@@ -8,11 +8,14 @@ const mongoose = require("mongoose"),
   User = require("../models/User");
 
 // 데이터베이스 연결 설정
-mongoose.connect("mongodb://127.0.0.1:27017/ut-nodejs", {
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  "mongodb+srv://ut-node:cherry0909!@ut-node.w4u3y6k.mongodb.net/?retryWrites=true&w=majority&appName=ut-node",
+);
 
-mongoose.connection;
+const db = mongoose.connection;
+db.once("open", () => {
+  console.log("Connected to MONGODB!!!");
+});
 
 /** 
  * name: {
@@ -157,4 +160,4 @@ setTimeout(() => {
     .catch((error) => {
       console.log(`Error: ${error}`);
     });
-}, 500);
+}, 1500);
