@@ -120,7 +120,7 @@ module.exports = {
     });
   },
   update: (req, res, next) => {
-    let userID = req.params.id,
+    let userId = req.params.id,
     userParams = {
       name: {
         first: req.body.first,
@@ -154,6 +154,7 @@ module.exports = {
     User.findByIdAndRemove(userId)
     .then(() => {
       res.locals.redirect = "/users";
+      next();
     })
     .catch(error => {
       console.log(`Error fetching User by Id: ${error.message}`);
